@@ -11,7 +11,7 @@ Instrucciones del manejo de la libreria
     PlanoCartesiano(ANCHO, ALTO, pantalla)
 
 3. Funcion que dibuja una linea
-    linea(pantalla, color, puntoInicial, puntoFinal)
+    linea(pantalla, color, [puntoInicial], [puntoFinal])
 
 4. Funcion que dibuja un poligono
     poligono(pantalla, color, ListaPuntos)

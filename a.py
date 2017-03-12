@@ -56,9 +56,7 @@ if __name__ == '__main__':
     PuntoAR = cart(CENTRO, PuntoAR)
     PuntoBR = cart(CENTRO, PuntoBR)
     PuntoCR = cart(CENTRO, PuntoCR)
-    poligono(pantalla, AZULC, [PuntoAR, PuntoBR, PuntoCR])
-
-
+    poligono(pantalla, AZULC, [PuntoAR, PuntoBR, PuntoCR])    
 
     # Mantener Pantalla Activa
     fin = False

@@ -2,6 +2,7 @@ import pygame
 import math
 
 # Colores
+NEGRO = [0, 0, 0]
 ROJO = [255, 0, 0]
 AZUL = [034, 113, 179]
 LILA = [108, 070, 117]
@@ -28,6 +29,9 @@ def linea(pantalla, color, i, f):
 def poligono(pantalla, color, puntos):
     pygame.draw.polygon(pantalla, color, puntos, 1)
 
+def punto(pantalla, pto):
+    pygame.draw.circle(pantalla, ROJO, [10,10], 10)
+
 def escalar(punto, s_escalar):
     x = punto[0] * s_escalar[0]
     y = punto[1] * s_escalar[1]
@@ -46,3 +50,11 @@ def rotacionPlano(punto, theta):
     xr = (x * math.cos(math.radians(theta))) - (y * math.sin(math.radians(theta)))
     yr = (x * math.sin(math.radians(theta))) + (y * math.cos(math.radians(theta)))
     return (xr, yr)
+
+def rotacionPolares(x, y, theta):
+    #r = sqrt(x ^ 2 + y ^ 2)
+    ang = math.radians(theta)
+    r = x
+    x = r * math.cos(theta)
+    y = r * math.sin(theta)
+    return (x, y)
