@@ -1,0 +1,6 @@
+448x320 dimensiones map_principal.png
+
+448 / 14 = 32
+320 / 10 = 32
+
+32x32
