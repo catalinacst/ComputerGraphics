@@ -13,12 +13,12 @@ NEGRO = (0, 0, 0)
 '.', -> pasto
 '''
 #             1    2    3    4    5    6    7    8    9   10   11   12   13   14
-mapa_one = [ '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', '$', # 1
-             '#', '$', '#', '$', '#', '#', '#', '$', '#', '$', '$', '#', '#', '#', # 2
-             '#', '$', '#', '$', '#', '$', '#', '$', '#', '$', '$', '#', '$', '#', # 3
-             '#', '#', '#', '$', '#', '$', '#', '$', '#', '$', '$', '#', '#', '#', # 4
-             '#', '$', '#', '$', '#', '$', '#', '$', '#', '$', '$', '#', '$', '#', # 5
-             '#', '$', '#', '$', '#', '$', '#', '$', '#', '$', '$', '#', '$', '#', # 6
+mapa_one = [ '$', '$', '$', '$', '$', '$', '$', '$', '$', '&', '$', '$', '$', '$', # 1
+             '#', '$', '#', '$', '#', '#', '#', '$', '#', '&', '$', '#', '#', '#', # 2
+             '#', '$', '#', '$', '#', '$', '#', '$', '#', '&', '$', '#', '$', '#', # 3
+             '#', '#', '#', '$', '#', '$', '#', '$', '#', '&', '$', '#', '#', '#', # 4
+             '#', '$', '#', '$', '#', '$', '#', '$', '#', '&', '$', '#', '$', '#', # 5
+             '#', '$', '#', '$', '#', '$', '#', '$', '#', '#', '$', '#', '$', '#', # 6
              '#', '$', '#', '$', '#', '#', '#', '$', '#', '#', '$', '#', '$', '#'  # 7
              ]
 
@@ -32,11 +32,12 @@ class Jugador(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(archivo_img).convert_alpha()
         self.rect = self.image.get_rect()
-        self.rect.x = 650
+        self.rect.x = 0
         self.rect.y = 625
         self.dir = 0
-        self.var_x = 1
-        self.var_y = 1
+        self.orientacion = 0
+        self.var_x = 31
+        self.var_y = 31
         self.muros = []
 
     def nueva_img(self, archivo):
@@ -46,22 +47,32 @@ class Jugador(pygame.sprite.Sprite):
     def update(self):
         desplx = self.rect.x
         desply = self.rect.y
+        '''
+        dir = 1 derecha
+        dir = 2 izquierda
+        dir = 3 arriba
+        dir = 4 abajo
+        '''
         if self.dir == 1:
+            self.orientacion = 1
             self.rect.x = self.rect.x + self.var_x
             if desplx > ANCHO - 48:
                 self.dir = 2
             self.nueva_img('tanqueright.png')
         if self.dir == 2:
+            self.orientacion = 2
             self.rect.x = self.rect.x - self.var_x
             if desplx < 0:
                 self.dir = 1
             self.nueva_img('tanqueleft.png')
         if self.dir == 3:
+            self.orientacion = 3
             self.rect.y = self.rect.y - self.var_y
             if desply < 0:
                 self.dir = 4
             self.nueva_img('tanqueup.png')
         if self.dir == 4:
+            self.orientacion = 4
             self.rect.y = self.rect.y + self.var_y
             if desply > ALTO - 50:
                 self.dir = 3
@@ -82,7 +93,7 @@ class Jugador(pygame.sprite.Sprite):
             if self.dir == 4:
                 if self.rect.bottom > m.rect.top:
                     self.rect.bottom = m.rect.top
-
+        self.dir = 0
 class Muro(pygame.sprite.Sprite):
     def __init__(self, archivo_img, pos):
         pygame.sprite.Sprite.__init__(self)
@@ -90,6 +101,42 @@ class Muro(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = pos[0]
         self.rect.y = pos[1]
+
+class Bala(pygame.sprite.Sprite):
+    def __init__(self,archivo_img,pos):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(archivo_img).convert_alpha()
+        self.rect = self.image.get_rect()
+        self.rect.x = pos[0]
+        self.rect.y = pos[1]
+        self.dir = 0
+        self.var_y = 2
+        self.var_x = 2
+
+    def nueva_img(self, archivo):
+        self.image = pygame.image.load(archivo).convert_alpha()
+
+    def update(self):
+        desplx = self.rect.x
+        desply = self.rect.y
+        '''
+        dir = 1 derecha
+        dir = 2 izquierda
+        dir = 3 arriba
+        dir = 4 abajo
+        '''
+        if self.dir == 1:
+            self.rect.x = self.rect.x + self.var_x
+            self.nueva_img('bala_right.png')
+        if self.dir == 2:
+            self.rect.x = self.rect.x - self.var_x
+            self.nueva_img('bala_left.png')
+        if self.dir == 3:
+            self.rect.y = self.rect.y - self.var_y
+            self.nueva_img('bala_up.png')
+        if self.dir == 4:
+            self.rect.y = self.rect.y + self.var_y
+            self.nueva_img('bala_down.png')
 
 if __name__ == '__main__':
     # Inicializar pygame
@@ -101,6 +148,7 @@ if __name__ == '__main__':
     muros = pygame.sprite.Group()
     enemies_estatic = pygame.sprite.Group()
     enemies_dinamic = pygame.sprite.Group()
+    balas = pygame.sprite.Group()
     todos = pygame.sprite.Group()
 
     # Leer mapa
@@ -157,8 +205,40 @@ if __name__ == '__main__':
                     jp.dir = 3
                 if event.key == pygame.K_DOWN:
                     jp.dir = 4
+                if event.key == pygame.K_SPACE:
+                    if jp.orientacion == 1:
+                        bala = Bala('bala_right.png', [jp.rect.x, jp.rect.y])
+                        balas.add(bala)
+                        bala.dir = 1
+                        todos.add(bala)
+                    elif jp.orientacion == 2:
+                        bala = Bala('bala_left.png', [jp.rect.x, jp.rect.y])
+                        balas.add(bala)
+                        bala.dir = 2
+                        todos.add(bala)
+                    elif jp.orientacion == 3:
+                        bala = Bala('bala_up.png', [jp.rect.x, jp.rect.y])
+                        balas.add(bala)
+                        bala.dir = 3
+                        todos.add(bala)
+                    elif jp.orientacion == 4:
+                        bala = Bala('bala_down.png', [jp.rect.x, jp.rect.y])
+                        balas.add(bala)
+                        bala.dir = 4
+                        todos.add(bala)
+
+        for bala in balas:
+            l_imp = pygame.sprite.spritecollide(bala, muros, True)
+            for e in l_imp:
+                balas.remove(bala)
+                todos.remove(bala)
 
         pantalla.fill(NEGRO)
         todos.update()
         todos.draw(pantalla)
         pygame.display.flip()
+
+        # dir = 1 derecha
+        # dir = 2 izquierda
+        # dir = 3 arriba
+        # dir = 4 abajo
