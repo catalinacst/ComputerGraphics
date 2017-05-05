@@ -15,7 +15,7 @@ NEGRO = (0, 0, 0)
 '.', -> nada
 '''
 #             1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19
-#            20   21   22   23   24   25   26   27   28   29   30   31   32   33   
+#            20   21   22   23   24   25   26   27   28   29   30   31   32   33
 mapa_one = [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
              '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '1', '1', '2',  # 1
 
@@ -194,7 +194,7 @@ class EnemyStatic(pygame.sprite.Sprite):
     def update(self):
         self.temp = self.temp - 1
         if self.temp == 0:
-            bala = Bala_Enemigos('bala_down.png', [64, 5])
+            bala = Bala_Enemigos('bala_down.png', [self.rect.x, self.rect.y])
             bala.dir = 4
             bala_enemy.add(bala)
             todos.add(bala)
@@ -292,13 +292,12 @@ if __name__ == '__main__':
     static = EnemyStatic('enemystatic_down.png', [64, 5])
     enemies_static.add(static)
     todos.add(static)
-    num_enemy = 5
+
     fin = False
     while not fin:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 fin = True
-            num_enemy = num_enemy - 1
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     jp.dir = 1
@@ -334,6 +333,8 @@ if __name__ == '__main__':
                         bala_jp.add(bala)
                         todos.add(bala)
 
+        # Se analiza colision de las balas del jugador
+        # con los diferentes muros (destruye ladrillos) (no destruye acero)
         for bala in bala_jp:
             col_ladrillos = pygame.sprite.spritecollide(bala, muros_ladrillo, True)
             col_aceros = pygame.sprite.spritecollide(bala, muros_acero, False)
@@ -344,6 +345,8 @@ if __name__ == '__main__':
                 bala_jp.remove(bala)
                 todos.remove(bala)
 
+        # Se analiza colision de las balas del enemigo
+        # con los diferentes muros (destruye ladrillos) (no destruye acero)
         for bala in bala_enemy:
             col_ladrillos = pygame.sprite.spritecollide(bala, muros_ladrillo, True)
             col_aceros = pygame.sprite.spritecollide(bala, muros_acero, False)
@@ -354,6 +357,7 @@ if __name__ == '__main__':
                 bala_enemy.remove(bala)
                 todos.remove(bala)
 
+        # Se analiza colision de bala de enemigo y bala del jugador, para que se autodestruyan entre si
         for bala in bala_enemy:
             col_balas = pygame.sprite.spritecollide(bala, bala_jp, False)
             for e in col_balas:
@@ -362,8 +366,20 @@ if __name__ == '__main__':
                 for bala in bala_jp:
                     bala_jp.remove(bala)
                     todos.remove(bala)
-
         jp.muros = muros_duros
+
+        # Se analiza colision bala enemigo con el tanque jugador
+        balaEnemy_jp = pygame.sprite.spritecollide(jp, bala_enemy, True)
+        for e in balaEnemy_jp:
+            print "disparo jugador"
+
+        # Se analiza colision bala jugador con el tanque enemigo
+        for bala in bala_jp:
+            balaJp_enemy = pygame.sprite.spritecollide(bala, enemies_static, True)
+            for e in balaJp_enemy:
+                bala_jp.remove(bala)
+                todos.remove(bala)
+
         todos.add(jp)
         pantalla.fill(NEGRO)
         todos.update()
