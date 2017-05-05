@@ -5,6 +5,7 @@ ANCHO = 1302
 ALTO = 651
 
 NEGRO = (0, 0, 0)
+BLANCO = (255,255,255)
 
 '''
 '1', -> muro ladrillo
@@ -20,7 +21,7 @@ mapa_one = [ '.', '.', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.
              '.', '1', '.', '.', '.', '.', '.', '.', '.', '.', '.', '1', '1', '2',  # 1
 
              '.', '.', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '2', '.', '.', '2', '2', '2', '2', '1', '1', '1', '1', '5', '2',  # 2
+             '.', '2', '.', '.', '2', '2', '2', '2', '1', '1', '1', '1', '.', '2',  # 2
 
              '.', '.', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
              '.', '2', '.', '2', '.', '.', '.', '.', '.', '.', '2', '1', '1', '2',  # 3
@@ -80,13 +81,12 @@ mapa_one = [ '.', '.', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.
              '.', '2', '4', '4', '4', '2', '.', '.', '.', '.', '.', '.', '.', '2',  # 22
              ]
 
-
-
 map_columnas = 33
 map_filas = 22
 
 muro_x = 31
 muro_y = 31
+
 
 # Creando grupos - Globales -
 muros_ladrillo = pygame.sprite.Group()
@@ -111,6 +111,8 @@ class Jugador(pygame.sprite.Sprite):
         self.var_x = 31
         self.var_y = 31
         self.muros = []
+        self.vidas = 3
+        self.victoria = 0
 
     def nueva_img(self, archivo):
         self.image = pygame.image.load(archivo).convert_alpha()
@@ -231,7 +233,7 @@ class EnemyStatic(pygame.sprite.Sprite):
                 self.temp = random.randint(200,500)
 
 class EnemyDinamic(pygame.sprite.Sprite):
-    def __init__(self, archivo_img, pos, dire):
+    def __init__(self, archivo_img, pos, dire, top, bottom, left, right):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(archivo_img).convert_alpha()
         self.rect = self.image.get_rect()
@@ -240,16 +242,26 @@ class EnemyDinamic(pygame.sprite.Sprite):
         self.dir = dire
         self.var_y = 1
         self.var_x = 1
+        self.right = right
+        self.left = left
+        self.top = top
+        self.bottom = bottom
         self.temp = random.randint(150,200)
 
     def nueva_img(self, archivo):
         self.image = pygame.image.load(archivo).convert_alpha()
 
     def update(self):
-        if self.rect.y > 346 and self.dir == 4:
+        if self.bottom != 0 and self.rect.y > self.bottom and self.dir == 4:
             self.dir = 3
-        if self.rect.y < 197 and self.dir == 3:
+        if self.top != 0 and self.rect.y < self.top and self.dir == 3:
            self.dir = 4
+        if self.dir == 1:
+            self.rect.x += self.var_x
+            self.nueva_img('enemydinamic_right.png')
+        elif self.dir == 2:
+            self.rect.x -= self.var_x
+            self.nueva_img('enemydinamic_left.png')
         elif self.dir == 3:
             self.rect.y -= self.var_y
             self.nueva_img('enemydinamic_up.png')
@@ -359,14 +371,75 @@ def create_EnemyStatic():
     enemies_static.add(static)
     todos.add(static)
 
+def create_EnemyDinamic():
+    dinamic = EnemyDinamic('enemydinamic_up.png', [192, 346], 3, 192, 346, 0, 0)
+    enemies_dinamic.add(dinamic)
+    todos.add(dinamic)
 
-if __name__ == '__main__':
-    # Inicializar pygame
-    pygame.init()
-    # Inicializar pantalla
-    pantalla = pygame.display.set_mode([ANCHO, ALTO])
+    dinamic = EnemyDinamic('enemydinamic_down.png', [899, 471], 4, 471, 626, 0, 0)
+    enemies_dinamic.add(dinamic)
+    todos.add(dinamic)
 
-    # Leer mapa (x y -> posiciones de la imagen)
+def analizar_Colisiones():
+    # Se analiza colision de las balas del jugador
+    # con los diferentes muros (destruye ladrillos) (no destruye acero)
+    for bala in bala_jp:
+        col_ladrillos = pygame.sprite.spritecollide(bala, muros_ladrillo, True)
+        col_aceros = pygame.sprite.spritecollide(bala, muros_acero, False)
+        for e in col_ladrillos:
+            bala_jp.remove(bala)
+            todos.remove(bala)
+        for i in col_aceros:
+            bala_jp.remove(bala)
+            todos.remove(bala)
+
+    # Se analiza colision de las balas del enemigo
+    # con los diferentes muros (destruye ladrillos) (no destruye acero)
+    for bala in bala_enemy:
+        col_ladrillos = pygame.sprite.spritecollide(bala, muros_ladrillo, True)
+        col_aceros = pygame.sprite.spritecollide(bala, muros_acero, False)
+        for e in col_ladrillos:
+            bala_enemy.remove(bala)
+            todos.remove(bala)
+        for i in col_aceros:
+            bala_enemy.remove(bala)
+            todos.remove(bala)
+
+    # Se analiza colision de bala de enemigo y bala del jugador, para que se autodestruyan entre si
+    for bala in bala_enemy:
+        col_balas = pygame.sprite.spritecollide(bala, bala_jp, False)
+        for e in col_balas:
+            bala_enemy.remove(bala)
+            todos.remove(bala)
+            for bala in bala_jp:
+                bala_jp.remove(bala)
+                todos.remove(bala)
+    jp.muros = muros_duros
+
+    # Se analiza colision bala enemigo con el tanque jugador
+    balaEnemy_jp = pygame.sprite.spritecollide(jp, bala_enemy, True)
+    for e in balaEnemy_jp:
+        print "disparo jugador"
+        jp.vidas = jp.vidas - 1
+        info.vidas = info.vidas - 1
+
+    # Se analiza colision bala jugador con el tanque enemigo estatico
+    for bala in bala_jp:
+        balaJp_enemy = pygame.sprite.spritecollide(bala, enemies_static, True)
+        for e in balaJp_enemy:
+            bala_jp.remove(bala)
+            todos.remove(bala)
+            info.enemigos = info.enemigos - 1
+
+
+    # Se analiza colision bala jugador con el tanque enemigo dinamico
+    for bala in bala_jp:
+        balaJp_enemy = pygame.sprite.spritecollide(bala, enemies_dinamic, True)
+        for e in balaJp_enemy:
+            bala_jp.remove(bala)
+            todos.remove(bala)
+
+def Leer_Mapa_NivelUno():
     inicio = y = x_i = y_j = 0
     fin = map_columnas
     for k in range(map_filas):
@@ -393,10 +466,6 @@ if __name__ == '__main__':
                 agua = Muro('agua.png', [x,y])
                 todos.add(agua)
                 muros_ladrillo.add(agua)
-            elif element == '5':
-                jefe = Muro('jefe.png', [x,y])
-                todos.add(jefe)
-                jefes.add(jefe)
             elif element == '.':
                 pass
                 # print "numeral"
@@ -406,23 +475,85 @@ if __name__ == '__main__':
         inicio = fin
         fin = fin + map_columnas
 
+class Barra_info(pygame.sprite.Sprite):
+    def __init__(self):
+        self.enemigos = 0
+        self.vidas = 0
+        self.nivel = 0
+
+    def Perder_vidas(self):
+        v=str(self.vidas)
+        fuente=pygame.font.Font(None,25)
+        texto=fuente.render("Vidas:",True,BLANCO)
+        vida=fuente.render(v,True,BLANCO)
+        pantalla.blit(texto,[1100,50])
+        pantalla.blit(vida,[1250,50])
+        pygame.display.flip()
+
+    def Matar_enemigos(self):
+        M=str(self.enemigos)
+        fuente=pygame.font.Font(None,25)
+        texto=fuente.render("Enemigos:",True,BLANCO)
+        enemigos=fuente.render(M,True,BLANCO)
+        pantalla.blit(texto,[1100,70])
+        pantalla.blit(enemigos,[1250,70])
+        pygame.display.flip()
+
+    def Nivel_actual(self):
+        N=str(self.nivel)
+        fuente=pygame.font.Font(None,25)
+        texto=fuente.render("Nivel Actual:",True,BLANCO)
+        nivel=fuente.render(N,True,BLANCO)
+        pantalla.blit(texto,[1100,90])
+        pantalla.blit(nivel,[1250,90])
+        pygame.display.flip()
+
+info = Barra_info()
+
+if __name__ == '__main__':
+    # Inicializar pygame
+    pygame.init()
+    # Inicializar pantalla
+    pantalla = pygame.display.set_mode([ANCHO, ALTO])
+
+    # Leer mapa PRIMER NIVEL (x y -> posiciones de la imagen)
+    Leer_Mapa_NivelUno()
+
     jp = Jugador('tanquedown.png')
     jp.muros = muros_duros
     todos.add(jp)
 
+    jefe = Muro('jefe.png', [961, 31])
+    todos.add(jefe)
+
     # creacion enemigo dinamicos
     create_EnemyStatic()
 
-    # creacion enemigo dinamico
-    dinamic = EnemyDinamic('enemydinamic_up.png', [192, 346], 3)
-    enemies_dinamic.add(dinamic)
-    todos.add(dinamic)
+    # creacion enemigo dinamico (archivo, posxy, dir, top, bottom, left, right)
+    create_EnemyDinamic()
 
+    info.enemigos = 12
+    info.vidas = 3
+    info.nivel = 1
+
+    # PRIMER NIVEl
     fin = False
-    while not fin:
+    victoria = False
+    seguir = True
+    while seguir and not fin:
+        info.Perder_vidas()
+        info.Matar_enemigos()
+        info.Nivel_actual()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 fin = True
+                seguir = False
+            if jp.vidas == 0:
+                victoria = False
+            if (jp.rect.left == jefe.rect.left) or (jp.rect.left == 961 and jp.rect.top == 62):
+                victoria = True
+
+                print "victoria"
             if event.type == pygame.KEYDOWN:
                 print "left",jp.rect.left
                 print "top",jp.rect.top
@@ -459,53 +590,8 @@ if __name__ == '__main__':
                         bala.dir = 4
                         bala_jp.add(bala)
                         todos.add(bala)
-
-        # Se analiza colision de las balas del jugador
-        # con los diferentes muros (destruye ladrillos) (no destruye acero)
-        for bala in bala_jp:
-            col_ladrillos = pygame.sprite.spritecollide(bala, muros_ladrillo, True)
-            col_aceros = pygame.sprite.spritecollide(bala, muros_acero, False)
-            for e in col_ladrillos:
-                bala_jp.remove(bala)
-                todos.remove(bala)
-            for i in col_aceros:
-                bala_jp.remove(bala)
-                todos.remove(bala)
-
-        # Se analiza colision de las balas del enemigo
-        # con los diferentes muros (destruye ladrillos) (no destruye acero)
-        for bala in bala_enemy:
-            col_ladrillos = pygame.sprite.spritecollide(bala, muros_ladrillo, True)
-            col_aceros = pygame.sprite.spritecollide(bala, muros_acero, False)
-            for e in col_ladrillos:
-                bala_enemy.remove(bala)
-                todos.remove(bala)
-            for i in col_aceros:
-                bala_enemy.remove(bala)
-                todos.remove(bala)
-
-        # Se analiza colision de bala de enemigo y bala del jugador, para que se autodestruyan entre si
-        for bala in bala_enemy:
-            col_balas = pygame.sprite.spritecollide(bala, bala_jp, False)
-            for e in col_balas:
-                bala_enemy.remove(bala)
-                todos.remove(bala)
-                for bala in bala_jp:
-                    bala_jp.remove(bala)
-                    todos.remove(bala)
-        jp.muros = muros_duros
-
-        # Se analiza colision bala enemigo con el tanque jugador
-        balaEnemy_jp = pygame.sprite.spritecollide(jp, bala_enemy, True)
-        for e in balaEnemy_jp:
-            print "disparo jugador"
-
-        # Se analiza colision bala jugador con el tanque enemigo
-        for bala in bala_jp:
-            balaJp_enemy = pygame.sprite.spritecollide(bala, enemies_static, True)
-            for e in balaJp_enemy:
-                bala_jp.remove(bala)
-                todos.remove(bala)
+        # Analiza todas las colisiones del juego GENERAL
+        analizar_Colisiones()
 
         todos.add(jp)
         pantalla.fill(NEGRO)
@@ -513,13 +599,4 @@ if __name__ == '__main__':
         todos.draw(pantalla)
         pygame.display.flip()
 
-        # print "left",e.rect.left
-        # print "right",e.rect.right
-        # print "down",e.rect.bottom # down
-        # print "up",e.rect.top # up
-        # print "x",e.rect.x
-        # print "y",e.rect.y
-        # print "bala_left",bala.rect.left
-        # print "bala_right",bala.rect.right
-        # print "bala_down",bala.rect.bottom
-        # print "bala_up",bala.rect.top,'\n'
+        # SEGUNDO NIVEL
