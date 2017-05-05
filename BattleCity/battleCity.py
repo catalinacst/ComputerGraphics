@@ -293,6 +293,10 @@ if __name__ == '__main__':
     enemies_static.add(static)
     todos.add(static)
 
+    static = EnemyStatic('enemystatic_down.png', [64, 5])
+    enemies_static.add(static)
+    todos.add(static)
+
     fin = False
     while not fin:
         for event in pygame.event.get():
