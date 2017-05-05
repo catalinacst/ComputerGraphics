@@ -17,68 +17,69 @@ NEGRO = (0, 0, 0)
 #             1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19
 #            20   21   22   23   24   25   26   27   28   29   30   31   32   33
 mapa_one = [ '.', '.', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '1', '1', '2',  # 1
+             '.', '1', '.', '.', '.', '.', '.', '.', '.', '.', '.', '1', '1', '2',  # 1
 
              '.', '.', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '1', '1', '1', '1', '5', '2',  # 2
+             '.', '2', '.', '.', '2', '2', '2', '2', '1', '1', '1', '1', '5', '2',  # 2
 
              '.', '.', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '1', '1', '2',  # 3
+             '.', '2', '.', '2', '.', '.', '.', '.', '.', '.', '2', '1', '1', '2',  # 3
 
              '.', '.', '.', '1', '1', '1', '1', '1', '1', '.', '.', '.', '.', '.', '.', '.', '.', '1', '.',
-             '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2',  # 4
+             '.', '2', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2',  # 4
 
-             '.', '1', '.', '1', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2',  # 5
+             '.', '1', '.', '1', '.', '.', '.', '.', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '2', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2',  # 5
 
              '.', '3', '.', '1', '.', '.', '.', '.', '.', '1', '1', '1', '1', '.', '2', '.', '.', '1', '.',
              '.', '2', '1', '1', '1', '1', '1', '1', '.', '.', '.', '.', '.', '2',  # 6
 
-             '.', '1', '.', '1', '.', '.', '.', '.', '.', '2', '.', '1', '.', '.', '2', '.', '.', '1', '.',
-             '.', '2', '1', '.', '.', '.', '.', '1', '.', '.', '.', '.', '.', '2',  # 7
+             '.', '1', '.', '1', '.', '2', '.', '2', '.', '2', '.', '1', '.', '.', '2', '.', '.', '1', '.',
+             '.', '2', '1', '.', '.', '.', '2', '1', '.', '.', '.', '.', '.', '2',  # 7
 
-             '.', '1', '.', '1', '.', '.', '.', '.', '.', '1', '.', '1', '.', '.', '2', '.', '.', '1', '.',
-             '.', '2', '1', '.', '.', '.', '.', '1', '.', '.', '.', '.', '.', '2',  # 8
+             '.', '1', '.', '1', '.', '2', '.', '2', '.', '1', '.', '1', '.', '.', '2', '.', '.', '1', '.',
+             '.', '2', '1', '.', '.', '.', '2', '1', '.', '.', '.', '.', '.', '2',  # 8
 
-             '.', '1', '.', '1', '.', '.', '.', '.', '.', '2', '.', '1', '.', '.', '2', '.', '.', '1', '.',
+             '.', '1', '.', '1', '.', '2', '.', '2', '.', '2', '.', '1', '.', '.', '2', '.', '.', '1', '.',
              '.', '.', '1', '1', '1', '1', '1', '1', '.', '.', '.', '.', '.', '2', # 9
 
-             '.', '1', '.', '1', '.', '.', '.', '.', '.', '2', '.', '1', '.', '.', '.', '.', '.', '1', '.',
+             '.', '1', '.', '1', '.', '2', '.', '2', '.', '2', '.', '1', '.', '.', '.', '.', '.', '1', '.',
              '.', '.', '1', '.', '.', '.', '.', '1', '.', '.', '.', '.', '.', '2', # 10
 
-             '.', '2', '.', '1', '.', '.', '.', '.', '.', '2', '.', '1', '.', '.', '2', '.', '.', '1', '.',
+             '.', '2', '.', '1', '.', '2', '.', '2', '.', '2', '.', '1', '.', '.', '2', '.', '.', '1', '.',
              '.', '.', '1', '.', '.', '.', '.', '1', '.', '.', '.', '.', '.', '2', # 11
 
-             '.', '1', '.', '1', '.', '.', '.', '.', '.', '2', '.', '1', '.', '.', '2', '.', '.', '.', '.',
+             '.', '1', '.', '1', '.', '2', '.', '2', '.', '2', '.', '1', '.', '.', '2', '.', '.', '.', '.',
              '.', '.', '1', '.', '.', '.', '.', '1', '.', '.', '.', '.', '.', '2', # 12
 
-             '.', '1', '.', '1', '.', '.', '.', '.', '.', '2', '2', '2', '2', '2', '2', '.', '.', '1', '1',
+             '.', '1', '.', '1', '.', '.', '.', '.', '.', '2', '1', '2', '2', '2', '2', '.', '.', '1', '1',
              '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', # 13
 
-             '.', '1', '.', '1', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '1', '1',
+             '.', '1', '.', '1', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '.', '.', '.', '1', '1',
              '.', '.', '.', '.', '.', '.', '.', '.', '.', '1', '.', '.', '.', '2', # 14
 
-             '.', '1', '.', '1', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '1', '.', '1', '.', '.', '2', '2', '.', '.', '.', '.', '.', '2', '.', '.', '.', '.', '.',
              '.', '.', '.', '.', '.', '.', '.', '.', '.', '1', '.', '.', '.', '2', # 15
 
-             '.', '1', '1', '2', '.', '.', '.', '.', '.', '3', '4', '4', '4', '4', '3', '.', '.', '.', '.',
+             '.', '1', '1', '2', '.', '.', '2', '2', '.', '3', '4', '4', '4', '4', '3', '2', '.', '.', '.',
              '.', '.', '1', '.', '.', '.', '.', '.', '.', '1', '.', '.', '.', '2', # 16
 
-             '.', '1', '.', '.', '.', '.', '.', '.', '.', '3', '3', '3', '3', '3', '3', '.', '.', '.', '.',
-             '.', '.', '1', '1', '1', '.', '.', '.', '.', '1', '.', '.', '.', '2', # 17
+             '.', '1', '.', '.', '.', '.', '2', '2', '.', '3', '3', '3', '3', '3', '3', '2', '.', '.', '.',
+             '.', '.', '1', '1', '1', '2', '.', '.', '.', '1', '.', '.', '.', '2', # 17
 
-             '.', '2', '.', '.', '2', '.', '.', '.', '.', '3', '3', '3', '3', '3', '3', '.', '.', '.', '.',
-             '.', '.', '3', '3', '3', '3', '.', '1', '1', '1', '.', '.', '.', '2', # 18
+             '.', '2', '.', '.', '2', '.', '2', '2', '.', '3', '3', '3', '3', '3', '3', '2', '.', '.', '.',
+             '.', '.', '3', '3', '3', '3', '2', '1', '1', '1', '.', '.', '.', '2', # 18
 
-             '.', '2', '.', '.', '2', '.', '.', '.', '.', '.', '3', '3', '3', '3', '.', '.', '.', '.', '.',
-             '.', '3', '3', '3', '3', '3', '3', '.', '.', '.', '.', '.', '.', '2', # 19
+             '.', '2', '.', '.', '2', '.', '.', '.', '.', '.', '3', '3', '3', '3', '2', '.', '.', '.', '.',
+             '.', '3', '3', '3', '3', '3', '3', '2', '.', '.', '.', '.', '.', '2', # 19
 
              '.', '1', '1', '2', '3', '3', '3', '2', '2', '4', '4', '4', '4', '4', '4', '4', '4', '4', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2',  # 21
+             '.', '2', '4', '4', '4', '4', '2', '.', '.', '.', '.', '.', '.', '2',  # 21
 
              '.', '2', '2', '1', '1', '1', '1', '2', '2', '1', '1', '1', '1', '1', '1', '1', '1', '1', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2',  # 22
+             '.', '2', '4', '4', '4', '2', '.', '.', '.', '.', '.', '.', '.', '2',  # 22
              ]
+
 
 
 map_columnas = 33
@@ -126,7 +127,7 @@ class Jugador(pygame.sprite.Sprite):
         if self.dir == 1:
             self.orientacion = 1
             self.rect.x = self.rect.x + self.var_x
-            if desplx > ANCHO - 48:
+            if desplx > ANCHO - 25:
                 self.dir = 2
             self.nueva_img('tanqueright.png')
         if self.dir == 2:
@@ -144,7 +145,7 @@ class Jugador(pygame.sprite.Sprite):
         if self.dir == 4:
             self.orientacion = 4
             self.rect.y = self.rect.y + self.var_y
-            if desply > ALTO - 50:
+            if desply > ALTO - 25:
                 self.dir = 3
             self.nueva_img('tanquedown.png')
 
@@ -173,6 +174,7 @@ class Bala_Enemigos(pygame.sprite.Sprite):
         self.rect.x = pos[0]
         self.rect.y = pos[1]
         self.dir = dire
+        self.var_x = 1
         self.var_y = 1
 
     def nueva_img(self, archivo):
@@ -185,8 +187,8 @@ class Bala_Enemigos(pygame.sprite.Sprite):
             self.rect.x = self.rect.x + self.var_x
             self.nueva_img('bala_right.png')
         elif self.dir == 2:
-            self.rect.x = self.rect.x - self.rect.x
-            self.nueva_img('bala_right.png')
+            self.rect.x = self.rect.x - self.var_x
+            self.nueva_img('bala_left.png')
         elif self.dir == 3:
             self.rect.y = self.rect.y - self.var_y
             self.nueva_img('bala_up.png')
@@ -205,6 +207,56 @@ class EnemyStatic(pygame.sprite.Sprite):
         self.temp = random.randint(200,500)
 
     def update(self):
+        self.temp = self.temp - 1
+        if self.temp == 0:
+            if self.dir == 1:
+                bala = Bala_Enemigos('bala_right.png', [self.rect.x, self.rect.y], self.dir)
+                bala_enemy.add(bala)
+                todos.add(bala)
+                self.temp = random.randint(200,500)
+            elif self.dir == 2:
+                bala = Bala_Enemigos('bala_left.png', [self.rect.x, self.rect.y], self.dir)
+                bala_enemy.add(bala)
+                todos.add(bala)
+                self.temp = random.randint(200,500)
+            elif self.dir == 3:
+                bala = Bala_Enemigos('bala_up.png', [self.rect.x, self.rect.y], self.dir)
+                bala_enemy.add(bala)
+                todos.add(bala)
+                self.temp = random.randint(200,500)
+            elif self.dir == 4:
+                bala = Bala_Enemigos('bala_down.png', [self.rect.x, self.rect.y], self.dir)
+                bala_enemy.add(bala)
+                todos.add(bala)
+                self.temp = random.randint(200,500)
+
+class EnemyDinamic(pygame.sprite.Sprite):
+    def __init__(self, archivo_img, pos, dire):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(archivo_img).convert_alpha()
+        self.rect = self.image.get_rect()
+        self.rect.x = pos[0]
+        self.rect.y = pos[1]
+        self.dir = dire
+        self.var_y = 1
+        self.var_x = 1
+        self.temp = random.randint(150,200)
+
+    def nueva_img(self, archivo):
+        self.image = pygame.image.load(archivo).convert_alpha()
+
+    def update(self):
+        if self.rect.y > 346 and self.dir == 4:
+            self.dir = 3
+        if self.rect.y < 197 and self.dir == 3:
+           self.dir = 4
+        elif self.dir == 3:
+            self.rect.y -= self.var_y
+            self.nueva_img('enemydinamic_up.png')
+        elif self.dir == 4:
+            self.rect.y += self.var_y
+            self.nueva_img('enemydinamic_down.png')
+
         self.temp = self.temp - 1
         if self.temp == 0:
             if self.dir == 1:
@@ -266,6 +318,47 @@ class Bala_Jugador(pygame.sprite.Sprite):
             self.rect.y = self.rect.y + self.var_y
             self.nueva_img('bala_down.png')
 
+def create_EnemyStatic():
+    static = EnemyStatic('enemystatic_down.png', [62, 5], 4)
+    enemies_static.add(static)
+    todos.add(static)
+
+    static = EnemyStatic('enemystatic_up.png', [248, 563], 3)
+    enemies_static.add(static)
+    todos.add(static)
+
+    static = EnemyStatic('enemystatic_up.png', [409, 347], 3)
+    enemies_static.add(static)
+    todos.add(static)
+
+    static = EnemyStatic('enemystatic_down.png', [124, 124], 4)
+    enemies_static.add(static)
+    todos.add(static)
+
+    static = EnemyStatic('enemystatic_up.png', [409, 347], 3)
+    enemies_static.add(static)
+    todos.add(static)
+
+    static = EnemyStatic('enemystatic_up.png', [589, 589], 3)
+    enemies_static.add(static)
+    todos.add(static)
+
+    static = EnemyStatic('enemystatic_left.png', [527, 67], 2)
+    enemies_static.add(static)
+    todos.add(static)
+
+    static = EnemyStatic('enemystatic_left.png', [843, 372], 2)
+    enemies_static.add(static)
+    todos.add(static)
+
+    static = EnemyStatic('enemystatic_left.png', [651, 285], 2)
+    enemies_static.add(static)
+    todos.add(static)
+
+    static = EnemyStatic('enemystatic_left.png', [905, 6], 2)
+    enemies_static.add(static)
+    todos.add(static)
+
 
 if __name__ == '__main__':
     # Inicializar pygame
@@ -317,37 +410,13 @@ if __name__ == '__main__':
     jp.muros = muros_duros
     todos.add(jp)
 
-    static = EnemyStatic('enemystatic_down.png', [62, 5], 4)
-    enemies_static.add(static)
-    todos.add(static)
+    # creacion enemigo dinamicos
+    create_EnemyStatic()
 
-    static = EnemyStatic('enemystatic_up.png', [248, 563], 3)
-    enemies_static.add(static)
-    todos.add(static)
-
-    static = EnemyStatic('enemystatic_up.png', [409, 347], 3)
-    enemies_static.add(static)
-    todos.add(static)
-
-    static = EnemyStatic('enemystatic_up.png', [124, 124], 4)
-    enemies_static.add(static)
-    todos.add(static)
-
-    static = EnemyStatic('enemystatic_up.png', [409, 347], 3)
-    enemies_static.add(static)
-    todos.add(static)
-
-    static = EnemyStatic('enemystatic_up.png', [589, 589], 3)
-    enemies_static.add(static)
-    todos.add(static)
-
-    static = EnemyStatic('enemystatic_left.png', [533, 62], 2)
-    enemies_static.add(static)
-    todos.add(static)
-
-    static = EnemyStatic('enemystatic_left.png', [843, 372], 3)
-    enemies_static.add(static)
-    todos.add(static)
+    # creacion enemigo dinamico
+    dinamic = EnemyDinamic('enemydinamic_up.png', [192, 346], 3)
+    enemies_dinamic.add(dinamic)
+    todos.add(dinamic)
 
     fin = False
     while not fin:
