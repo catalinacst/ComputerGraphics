@@ -1,8 +1,8 @@
 import pygame
 import random
 
-ANCHO = 1300
-ALTO = 650
+ANCHO = 1302
+ALTO = 651
 
 NEGRO = (0, 0, 0)
 
@@ -14,12 +14,12 @@ NEGRO = (0, 0, 0)
 '''
 #             1    2    3    4    5    6    7    8    9   10   11   12   13   14
 mapa_one = [ '$', '$', '$', '$', '$', '$', '$', '$', '$', '&', '$', '$', '$', '$', # 1
-             '#', '$', '#', '$', '#', '#', '#', '$', '#', '&', '$', '#', '#', '#', # 2
-             '#', '$', '#', '$', '#', '$', '#', '$', '#', '&', '$', '#', '$', '#', # 3
-             '#', '#', '#', '$', '#', '$', '#', '$', '#', '&', '$', '#', '#', '#', # 4
-             '#', '$', '#', '$', '#', '$', '#', '$', '#', '&', '$', '#', '$', '#', # 5
-             '#', '$', '#', '$', '#', '$', '#', '$', '#', '#', '$', '#', '$', '#', # 6
-             '#', '$', '#', '$', '#', '#', '#', '$', '#', '#', '$', '#', '$', '#'  # 7
+             '$', '#', '#', '#', '$', '#', '#', '$', '#', '&', '$', '#', '#', '#', # 2
+             '$', '#', '$', '#', '$', '$', '.', '$', '#', '&', '$', '#', '$', '#', # 3
+             '$', '#', '$', '#', '$', '$', '.', '$', '#', '&', '$', '#', '#', '#', # 4
+             '$', '#', '$', '#', '$', '$', '.', '$', '#', '&', '$', '#', '$', '#', # 5
+             '$', '#', '$', '#', '$', '$', '.', '$', '#', '#', '$', '#', '$', '#', # 6
+             '$', '#', '$', '#', '$', '#', '#', '$', '#', '#', '$', '#', '$', '#'  # 7
              ]
 
 map_columnas = 14
@@ -94,6 +94,7 @@ class Jugador(pygame.sprite.Sprite):
                 if self.rect.bottom > m.rect.top:
                     self.rect.bottom = m.rect.top
         self.dir = 0
+
 class Muro(pygame.sprite.Sprite):
     def __init__(self, archivo_img, pos):
         pygame.sprite.Sprite.__init__(self)
@@ -110,8 +111,8 @@ class Bala(pygame.sprite.Sprite):
         self.rect.x = pos[0]
         self.rect.y = pos[1]
         self.dir = 0
-        self.var_y = 2
-        self.var_x = 2
+        self.var_y = 1
+        self.var_x = 1
 
     def nueva_img(self, archivo):
         self.image = pygame.image.load(archivo).convert_alpha()
@@ -158,7 +159,7 @@ if __name__ == '__main__':
     for k in range(map_filas):
         x_i = 0
         fila = mapa_one[inicio:fin]
-        print fila
+        # print fila
         for element in fila:
             x = 0 + (x_i * muro_x)
             if element == '#':
@@ -199,32 +200,40 @@ if __name__ == '__main__':
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     jp.dir = 1
+                    jp.orientacion = 1
                 if event.key == pygame.K_LEFT:
                     jp.dir = 2
+                    jp.orientacion = 2
                 if event.key == pygame.K_UP:
                     jp.dir = 3
+                    jp.orientacion = 3
                 if event.key == pygame.K_DOWN:
                     jp.dir = 4
+                    jp.orientacion = 4
                 if event.key == pygame.K_SPACE:
                     if jp.orientacion == 1:
                         bala = Bala('bala_right.png', [jp.rect.x, jp.rect.y])
-                        balas.add(bala)
+                        print jp.rect.x,"right",jp.rect.y,'\n'
                         bala.dir = 1
+                        balas.add(bala)
                         todos.add(bala)
                     elif jp.orientacion == 2:
                         bala = Bala('bala_left.png', [jp.rect.x, jp.rect.y])
-                        balas.add(bala)
+                        print jp.rect.x,"left",jp.rect.y,'\n'
                         bala.dir = 2
+                        balas.add(bala)
                         todos.add(bala)
                     elif jp.orientacion == 3:
                         bala = Bala('bala_up.png', [jp.rect.x, jp.rect.y])
-                        balas.add(bala)
+                        print jp.rect.x,"up",jp.rect.y,'\n'
                         bala.dir = 3
+                        balas.add(bala)
                         todos.add(bala)
                     elif jp.orientacion == 4:
                         bala = Bala('bala_down.png', [jp.rect.x, jp.rect.y])
-                        balas.add(bala)
+                        print jp.rect.x,"down",jp.rect.y,'\n'
                         bala.dir = 4
+                        balas.add(bala)
                         todos.add(bala)
 
         for bala in balas:
@@ -233,6 +242,8 @@ if __name__ == '__main__':
                 balas.remove(bala)
                 todos.remove(bala)
 
+        jp.muros = muros
+        todos.add(jp)
         pantalla.fill(NEGRO)
         todos.update()
         todos.draw(pantalla)
@@ -242,3 +253,14 @@ if __name__ == '__main__':
         # dir = 2 izquierda
         # dir = 3 arriba
         # dir = 4 abajo
+
+        # print "left",e.rect.left
+        # print "right",e.rect.right
+        # print "down",e.rect.bottom # down
+        # print "up",e.rect.top # up
+        # print "x",e.rect.x
+        # print "y",e.rect.y
+        # print "bala_left",bala.rect.left
+        # print "bala_right",bala.rect.right
+        # print "bala_down",bala.rect.bottom
+        # print "bala_up",bala.rect.top,'\n'
