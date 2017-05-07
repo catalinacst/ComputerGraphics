@@ -85,68 +85,136 @@ mapa_one = [ '.', '.', '6_4', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', 
 
 #            1    2      3     4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19
 #            20   21   22   23   24   25   26   27   28   29   30   31   32   33
-mapa_two = [ '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 1
+mapa_two = [ '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2',
+             '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2',  # 1
+
+             '2', '.', '6_4', '.', '.', '.', '.', '6_4', '.', '.', '.', '.', '.', '.', '.', '6_1', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2',  # 2
 
              '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 2
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2',  # 3
 
              '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 3
+             '.', '.', '.', '.', '.', '4', '.', '.', '.', '.', '.', '.', '.', '2',  # 4
 
              '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 4
+             '.', '.', '.', '.', '.', '4', '.', '.', '.', '.', '.', '.', '6_2', '2',  # 5
 
              '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 5
+             '.', '.', '.', '.', '.', '4', '.', '.', '.', '.', '.', '.', '.', '2',  # 6
 
              '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 6
+             '.', '.', '.', '.', '.', '4', '.', '.', '.', '.', '.', '.', '.', '2',  # 7
 
-             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 7
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '4', '4', '4', '4', '4', '4', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2',  # 8
 
-             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 8
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '4', '3', '3', '3', '3', '4', '.', '.',
+             '.', '.', '3', '3', '3', '3', '3', '3', '.', '.', '.', '.', '.', '2', # 9
 
-             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 9
+             '2', '6_1', '.', '.', '.', '.', '.', '.', '.', '.', '.', '4', '3', '3', '3', '4', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', # 10
 
-             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 10
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '4', '4', '4', '4', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', # 11
+
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', # 12
+
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '6_3', '2', '2',
+             '2', '3', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', # 13
+
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '.', '3',
+             '3', '.', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', # 14
+
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '3', '2',
+             '2', '2', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', # 15
+
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '3', '2',
+             '6_4', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', # 16
+
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '6_2', '2', # 17
+
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', # 18
+
+             '3', '3', '3', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', # 19
+
+             '3', '3', '3', '.', '.', '6_3', '.', '.', '.', '.', '6_3', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2',  # 20
+
+             '.', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2',
+             '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', # 21
+             ]
+
+#            1    2      3     4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19
+#            20   21   22   23   24   25   26   27   28   29   30   31   32   33
+#            1    2      3     4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19
+#            20   21   22   23   24   25   26   27   28   29   30   31   32   33
+mapa_three = [ '.', '.', '.', '.', '.', '.', '.', '6_4', '.', '.', '.', '.', '.', '.', '6_4', '.', '.', '.',
+              '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '1', '.', '1',  # 1
 
              '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 11
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '1', '.', '1',  # 2
 
              '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '1', '.', '1',  # 3
+
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '6_2', '2', '1', '.', '1',  # 4
+
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '6_2', '2', '1', '.', '1',  # 5
+
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '1', '.', '1',  # 6
+
+             '.', '.', '.', '.', '.', '6_1', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '.', '2',  # 7
+
+             '.', '.', '.', '.', '2', '2', '3', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '.', '6_4', '.',  # 8
+
+             '.', '.', '.', '.', '2', '3', '3', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '.', '.', '.', # 9
+
+             '.', '.', '.', '.', '2', '3', '2', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '.', '.', '.', # 10
+
+             '.', '.', '.', '.', '2', '1', '2', '2', '.', '.', '.', '.', '3', '3', '3', '3', '1', '.', '.',
+             '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '6_1', '.', '.', # 11
+
+             '.', '.', '.', '.', '2', '1', '1', '2', '.', '.', '.', '.', '3', '.', '.', '.', '1', '.', '.',
              '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 12
 
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '2', '1', '6_2', '2', '.', '.', '.', '.', '3', '.', '.', '.', '1', '.', '.',
              '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 13
 
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 14
+             '.', '.', '.', '.', '2', '1', '2', '2', '.', '.', '.', '.', '3', '.', '.', '.', '1', '.', '.', '.',
+              '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 14
 
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 15
+             '.', '.', '.', '.', '2', '1', '1', '2', '.', '.', '.', '.', '1', '1', '1', '1', '1', '.', '.', '.',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 15
 
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '.', '2', '2', '1', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
              '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 16
 
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 17
+             '.', '.', '.', '.', '2', '6_4', '1', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '.', '.', '.', # 17
 
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 18
+             '.', '.', '.', '.', '2', '1', '1', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '3', '3', '3', '3', '3', '3', '3', '3', '3', '.', '.', '.', # 18
 
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', # 19
+             '2', '2', '2', '2', '2', '1', '2', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
+             '.', '.', '.', '3', '3', '3', '3', '3', '3', '3', '.', '.', '.', '.', # 19
 
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 20
+             '.', '.', '.', '.', '1', '1', '2', '2', '.', '.', '6_3', '.', '.', '.', '.', '.', '.', '6_3',
+             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 20
 
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',
-             '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.',  # 21
+             '.', '4', '4', '4', '4', '4', '4', '4', '4', '4', '4', '4', '4', '4', '4', '4', '2', '4', '4',
+             '4', '4', '4', '4', '4', '4', '4', '4', '4', '4', '4', '1', '6_3', '.', # 21
              ]
 
 map_columnas = 33
@@ -158,7 +226,8 @@ muro_y = 31
 # Creando grupos - Globales -
 muros_ladrillo = pygame.sprite.Group()
 muros_acero = pygame.sprite.Group()
-muros_duros = pygame.sprite.Group()
+muros_obstaculo = pygame.sprite.Group()
+muros_cesped = pygame.sprite.Group()
 bala_jp = pygame.sprite.Group()
 bala_enemy = pygame.sprite.Group()
 jefes = pygame.sprite.Group()
@@ -179,6 +248,7 @@ class Jugador(pygame.sprite.Sprite):
         self.var_y = 31
         self.muros = []
         self.vidas = 3
+        self.enemies = 12
         self.victoria = 0
 
     def nueva_img(self, archivo):
@@ -401,10 +471,12 @@ def create_EnemyDinamic():
     # creacion enemigo dinamico (archivo,           posxy,  dir, top, bottom, left, right)
     dinamic = EnemyDinamic('enemydinamic_up.png', [192, 346], 3, 192, 366, 0, 0)
     enemies_dinamic.add(dinamic)
+    muros_obstaculo.add(dinamic)
     todos.add(dinamic)
 
     dinamic = EnemyDinamic('enemydinamic_down.png', [899, 471], 4, 471, 626, 0, 0)
     enemies_dinamic.add(dinamic)
+    muros_obstaculo.add(dinamic)
     todos.add(dinamic)
 
 def analizar_Colisiones():
@@ -441,7 +513,7 @@ def analizar_Colisiones():
             # for bala in bala_jp:
             #     bala_jp.remove(bala)
             #     todos.remove(bala)
-    jp.muros = muros_duros
+    jp.muros = muros_obstaculo
 
     # Se analiza colision bala enemigo con el tanque jugador
     balaEnemy_jp = pygame.sprite.spritecollide(jp, bala_enemy, True)
@@ -455,6 +527,7 @@ def analizar_Colisiones():
         balaJp_enemy = pygame.sprite.spritecollide(bala, enemies_static, True)
         for e in balaJp_enemy:
             bala_jp.remove(bala)
+            jp.enemies = jp.enemies - 1
             todos.remove(bala)
             # info.enemigos = info.enemigos - 1
 
@@ -463,6 +536,7 @@ def analizar_Colisiones():
         balaJp_enemy = pygame.sprite.spritecollide(bala, enemies_dinamic, True)
         for e in balaJp_enemy:
             bala_jp.remove(bala)
+            jp.enemies = jp.enemies - 1
             todos.remove(bala)
 
 def Leer_Mapa(nombre_mapa):
@@ -477,36 +551,40 @@ def Leer_Mapa(nombre_mapa):
             if element == '1':
                 ladrillo = Muro('muro_ladrillo.png', [x,y])
                 muros_ladrillo.add(ladrillo)
-                muros_duros.add(ladrillo)
+                muros_obstaculo.add(ladrillo)
                 todos.add(ladrillo)
             elif element == '2':
                 acero = Muro('muro_acero.png', [x,y])
                 muros_acero.add(acero)
-                muros_duros.add(acero)
+                muros_obstaculo.add(acero)
                 todos.add(acero)
             elif element == '3':
                 cesped = Muro('cesped.png', [x,y])
                 todos.add(cesped)
-                muros_ladrillo.add(cesped)
+                muros_cesped.add(cesped)
             elif element == '4':
                 agua = Muro('agua.png', [x,y])
+                muros_obstaculo.add(agua)
                 todos.add(agua)
-                muros_ladrillo.add(agua)
             elif element == '6_1':
                 static = EnemyStatic('enemystatic_right.png', [x,y], 1)
                 enemies_static.add(static)
+                muros_obstaculo.add(static)
                 todos.add(static)
             elif element == '6_2':
                 static = EnemyStatic('enemystatic_left.png', [x,y], 2)
                 enemies_static.add(static)
+                muros_obstaculo.add(static)
                 todos.add(static)
             elif element == '6_3':
                 static = EnemyStatic('enemystatic_up.png', [x,y], 3)
                 enemies_static.add(static)
+                muros_obstaculo.add(static)
                 todos.add(static)
             elif element == '6_4':
                 static = EnemyStatic('enemystatic_down.png', [x,y], 4)
                 enemies_static.add(static)
+                muros_obstaculo.add(static)
                 todos.add(static)
             elif element == '.':
                 pass
@@ -597,13 +675,17 @@ if __name__ == '__main__':
             pygame.display.flip()
 
     seguir = True
+    victoria = False
 
+    # PRIMER NIVEL
 
     # Leer mapa PRIMER NIVEL (x y -> posiciones de la imagen)
     Leer_Mapa(mapa_one)
 
+
+    # JUGADOR PRIMER NIVEL
     jp = Jugador('tanquedown.png')
-    jp.muros = muros_duros
+    jp.muros = muros_obstaculo
     todos.add(jp)
 
     jefe = Muro('jefe.png', [961, 31])
@@ -612,7 +694,7 @@ if __name__ == '__main__':
     # creacion enemigo dinamico (archivo, posxy, dir, top, bottom, left, right)
     create_EnemyDinamic()
 
-    # NIVEL 1
+    # DINAMICA NIVEL 1
     while seguir and not fin:
         # info.Perder_vidas()
         # info.Matar_enemigos()
@@ -621,13 +703,6 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 fin = True
                 seguir = False
-            if jp.vidas == 0:
-                victoria = False
-                seguir = False
-            if (jp.rect.left == jefe.rect.left) or (jp.rect.left == 961 and jp.rect.top == 62):
-                victoria = True
-                seguir = False
-                print "victoria"
             if event.type == pygame.KEYDOWN:
                 print "right",jp.rect.right
                 print "left",jp.rect.left
@@ -669,13 +744,18 @@ if __name__ == '__main__':
         # Analiza todas las colisiones del juego GENERAL
         analizar_Colisiones()
 
-        todos.add(jp)
+        if jp.vidas == 0:
+            victoria = False
+            seguir = False
+        if (jp.rect.left == jefe.rect.left) or (jp.rect.left == 961 and jp.rect.top == 62):
+            victoria = True
+            seguir = False
+
         pantalla.fill(NEGRO)
+        todos.add(jp)
         todos.update()
         todos.draw(pantalla)
         pygame.display.flip()
-
-        # SEGUNDO NIVEL
 
     # Si gano nivel uno o no
     if victoria:
@@ -688,9 +768,11 @@ if __name__ == '__main__':
                     seguir = False
                 if event.type == pygame.KEYDOWN:
                     seguir = False
-            texto=fuente.render("Perfecto.. Nivel 2", True, BLANCO)
+            texto1 = fuente.render("BONUS", True, BLANCO)
+            texto2 = fuente.render("Objetivo: DESTRUYE A TODOS TUS ENEMIGOS", True, BLANCO)
             pantalla.fill(NEGRO)
-            pantalla.blit(texto, (250,150))
+            pantalla.blit(texto1, (400,60))
+            pantalla.blit(texto2, (400,200))
             pygame.display.flip()
         fin = False
         seguir = True
@@ -709,11 +791,11 @@ if __name__ == '__main__':
             pantalla.blit(texto, (250,150))
             pygame.display.flip()
 
-
     # Limpia los grupos para el segundo nivel
     muros_ladrillo.empty()
     muros_acero.empty()
-    muros_duros.empty()
+    muros_obstaculo.empty()
+    muros_cesped.empty()
     bala_jp.empty()
     bala_enemy.empty()
     jefes.empty()
@@ -721,25 +803,24 @@ if __name__ == '__main__':
     enemies_dinamic.empty()
     todos.empty()
 
-    # SEGUNDO NIVEL
-    # Leer mapa PRIMER NIVEL (x y -> posiciones de la imagen)
+
+    # SEGUNDO NIVEL BONUS
+    # Leer mapa dos (x y -> posiciones de la imagen)
     Leer_Mapa(mapa_two)
 
     jp = Jugador('tanquedown.png')
-    jp.muros = muros_duros
+    jp.muros = muros_obstaculo
     todos.add(jp)
+
+    # creacion enemigo dinamico (archivo, posxy, dir, top, bottom, left, right)
+    create_EnemyDinamic()
+
+    # DINAMICA NIVEL 2
     while not fin and seguir:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 fin = True
                 seguir = False
-            if jp.vidas == 0:
-                victoria = False
-                seguir = False
-            if (jp.rect.left == jefe.rect.left) or (jp.rect.left == 961 and jp.rect.top == 62):
-                victoria = True
-                seguir = False
-                print "victoria"
             if event.type == pygame.KEYDOWN:
                 print "right",jp.rect.right
                 print "left",jp.rect.left
@@ -778,8 +859,136 @@ if __name__ == '__main__':
                         bala.dir = 4
                         bala_jp.add(bala)
                         todos.add(bala)
+
         # Analiza todas las colisiones del juego GENERAL
         analizar_Colisiones()
+
+        if jp.vidas == 0:
+            victoria = False
+            seguir = False
+        if jp.enemies == 0:
+            victoria = True
+            seguir = False
+            print "victoria"
+
+        todos.add(jp)
+        pantalla.fill(NEGRO)
+        todos.update()
+        todos.draw(pantalla)
+        pygame.display.flip()
+
+    # Si gano nivel uno o no
+    if victoria:
+        seguir = True
+        while seguir:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    #Sale de ciclo y termina programa
+                    fin= True
+                    seguir = False
+                if event.type == pygame.KEYDOWN:
+                    seguir = False
+            texto1 = fuente.render("NIVEL TRES", True, BLANCO)
+            texto2 = fuente.render("LLEGA AL ESCUDO", True, BLANCO)
+            pantalla.fill(NEGRO)
+            pantalla.blit(texto1, (400,60))
+            pantalla.blit(texto2, (400,200))
+            pygame.display.flip()
+        fin = False
+        seguir = True
+    else:
+        seguir = True
+        while seguir:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    #Sale de ciclo y termina programa
+                    fin = True
+                    seguir = False
+                if event.type == pygame.KEYDOWN:
+                    seguir = False
+            texto = fuente.render("PERDISTE - JUEGA DE NUEVO", True, BLANCO)
+            pantalla.fill(NEGRO)
+            pantalla.blit(texto, (250,150))
+            pygame.display.flip()
+
+    # Limpia los grupos para el segundo nivel
+    muros_ladrillo.empty()
+    muros_acero.empty()
+    muros_obstaculo.empty()
+    muros_cesped.empty()
+    bala_jp.empty()
+    bala_enemy.empty()
+    jefes.empty()
+    enemies_static.empty()
+    enemies_dinamic.empty()
+    todos.empty()
+
+    # TERCER NIVEL
+    # Leer mapa TRES (x y -> posiciones de la imagen)
+    Leer_Mapa(mapa_three)
+
+    jp = Jugador('tanquedown.png')
+    jp.muros = muros_obstaculo
+    todos.add(jp)
+
+    # creacion enemigo dinamico (archivo, posxy, dir, top, bottom, left, right)
+    # create_EnemyDinamic()
+
+    # DINAMICA NIVEL 3
+    while not fin and seguir:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                fin = True
+                seguir = False
+            if event.type == pygame.KEYDOWN:
+                print "right",jp.rect.right
+                print "left",jp.rect.left
+                print "top",jp.rect.top
+                print "bottom",jp.rect.bottom,'\n'
+                if event.key == pygame.K_RIGHT:
+                    jp.dir = 1
+                    jp.orientacion = 1
+                if event.key == pygame.K_LEFT:
+                    jp.dir = 2
+                    jp.orientacion = 2
+                if event.key == pygame.K_UP:
+                    jp.dir = 3
+                    jp.orientacion = 3
+                if event.key == pygame.K_DOWN:
+                    jp.dir = 4
+                    jp.orientacion = 4
+                if event.key == pygame.K_SPACE:
+                    if jp.orientacion == 1:
+                        bala = Bala_Jugador('bala_right.png', [jp.rect.x, jp.rect.y])
+                        bala.dir = 1
+                        bala_jp.add(bala)
+                        todos.add(bala)
+                    elif jp.orientacion == 2:
+                        bala = Bala_Jugador('bala_left.png', [jp.rect.x, jp.rect.y])
+                        bala.dir = 2
+                        bala_jp.add(bala)
+                        todos.add(bala)
+                    elif jp.orientacion == 3:
+                        bala = Bala_Jugador('bala_up.png', [jp.rect.x, jp.rect.y])
+                        bala.dir = 3
+                        bala_jp.add(bala)
+                        todos.add(bala)
+                    elif jp.orientacion == 4:
+                        bala = Bala_Jugador('bala_down.png', [jp.rect.x, jp.rect.y])
+                        bala.dir = 4
+                        bala_jp.add(bala)
+                        todos.add(bala)
+
+        # Analiza todas las colisiones del juego GENERAL
+        analizar_Colisiones()
+
+        if jp.vidas == 0:
+            victoria = False
+            seguir = False
+        if jp.enemies == 0:
+            victoria = True
+            seguir = False
+            print "victoria"
 
         todos.add(jp)
         pantalla.fill(NEGRO)
