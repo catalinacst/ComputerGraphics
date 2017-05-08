@@ -552,6 +552,7 @@ def analizar_Colisiones():
     balaEnemy_jp = pygame.sprite.spritecollide(jp, bala_enemy, True)
     for e in balaEnemy_jp:
         print "disparo jugador"
+        perder_vida.play()
         jp.vidas = jp.vidas - 1
         # info.vidas = info.vidas - 1
 
@@ -559,6 +560,7 @@ def analizar_Colisiones():
     for bala in bala_jp:
         balaJp_enemy = pygame.sprite.spritecollide(bala, enemies_static, True)
         for e in balaJp_enemy:
+            disparo_tanqueEnemigo.play()
             bala_jp.remove(bala)
             jp.enemies = jp.enemies - 1
             todos.remove(bala)
@@ -568,6 +570,7 @@ def analizar_Colisiones():
     for bala in bala_jp:
         balaJp_enemy = pygame.sprite.spritecollide(bala, enemies_dinamic, True)
         for e in balaJp_enemy:
+            disparo_tanqueEnemigo.play()
             bala_jp.remove(bala)
             jp.enemies = jp.enemies - 1
             todos.remove(bala)
@@ -674,6 +677,15 @@ if __name__ == '__main__':
     # info.vidas = 3
     # info.nivel = 1
 
+    disparo_tanqueEnemigo = pygame.mixer.Sound("mato-enemigo.ogg")
+    avance_nivel = pygame.mixer.Sound("ganar-primer-nivel.ogg")
+    perder_vida = pygame.mixer.Sound("perder-vida.ogg")
+    gameover = pygame.mixer.Sound("gameover.ogg")
+
+    level_one = pygame.mixer.Sound("music_b.ogg")
+    level_two = pygame.mixer.Sound("music_a.ogg")
+    level_three = pygame.mixer.Sound("music_c.ogg")
+
     # PRIMER NIVEl
     fin = False
     pag = 1
@@ -727,6 +739,7 @@ if __name__ == '__main__':
     create_EnemyDinamic()
 
     # DINAMICA NIVEL 1
+    level_one.play()
     while seguir and not fin:
         # info.Perder_vidas()
         # info.Matar_enemigos()
@@ -736,10 +749,10 @@ if __name__ == '__main__':
                 fin = True
                 seguir = False
             if event.type == pygame.KEYDOWN:
-                print "right",jp.rect.right
-                print "left",jp.rect.left
-                print "top",jp.rect.top
-                print "bottom",jp.rect.bottom,'\n'
+                # print "right",jp.rect.right
+                # print "left",jp.rect.left
+                # print "top",jp.rect.top
+                # print "bottom",jp.rect.bottom,'\n'
                 if event.key == pygame.K_RIGHT:
                     jp.dir = 1
                     jp.orientacion = 1
@@ -753,6 +766,7 @@ if __name__ == '__main__':
                     jp.dir = 4
                     jp.orientacion = 4
                 if event.key == pygame.K_SPACE:
+
                     if jp.orientacion == 1:
                         bala = Bala_Jugador('bala_right.png', [jp.rect.x, jp.rect.y])
                         bala.dir = 1
@@ -776,11 +790,14 @@ if __name__ == '__main__':
         # Analiza todas las colisiones del juego GENERAL
         analizar_Colisiones()
 
-        if jp.vidas == 0:
+        if jp.vidas <= 0:
+            level_one.stop()
+            gameover.play()
             victoria = False
             seguir = False
         if jp.rect.left == jefe.rect.left and jp.rect.top == jefe.rect.top:
-        # if (jp.rect.left == jefe.rect.left and jp.rect.top == jefe.rect.top) or (jp.rect.left == 961 and jp.rect.top == 62):
+            level_one.stop()
+            avance_nivel.play()
             victoria = True
             seguir = False
 
@@ -848,6 +865,7 @@ if __name__ == '__main__':
     # creacion enemigo dinamico (archivo, posxy, dir, top, bottom, left, right)
     create_EnemyDinamic()
 
+    level_two.play()
     # DINAMICA NIVEL 2
     while not fin and seguir:
         for event in pygame.event.get():
@@ -855,10 +873,10 @@ if __name__ == '__main__':
                 fin = True
                 seguir = False
             if event.type == pygame.KEYDOWN:
-                print "right",jp.rect.right
-                print "left",jp.rect.left
-                print "top",jp.rect.top
-                print "bottom",jp.rect.bottom,'\n'
+                # print "right",jp.rect.right
+                # print "left",jp.rect.left
+                # print "top",jp.rect.top
+                # print "bottom",jp.rect.bottom,'\n'
                 if event.key == pygame.K_RIGHT:
                     jp.dir = 1
                     jp.orientacion = 1
@@ -872,6 +890,7 @@ if __name__ == '__main__':
                     jp.dir = 4
                     jp.orientacion = 4
                 if event.key == pygame.K_SPACE:
+
                     if jp.orientacion == 1:
                         bala = Bala_Jugador('bala_right.png', [jp.rect.x, jp.rect.y])
                         bala.dir = 1
@@ -896,10 +915,14 @@ if __name__ == '__main__':
         # Analiza todas las colisiones del juego GENERAL
         analizar_Colisiones()
 
-        if jp.vidas == 0:
+        if jp.vidas <= 0:
+            level_two.stop()
+            gameover.play()
             victoria = False
             seguir = False
         if jp.enemies == 0:
+            level_two.stop()
+            avance_nivel.play()
             victoria = True
             seguir = False
             print "victoria"
@@ -971,6 +994,7 @@ if __name__ == '__main__':
     # creacion enemigo dinamico (archivo, posxy, dir, top, bottom, left, right)
     create_EnemyDinamicThree()
 
+    level_three.play()
     # DINAMICA NIVEL 3
     '''
     dinamicos
@@ -985,10 +1009,10 @@ if __name__ == '__main__':
                 fin = True
                 seguir = False
             if event.type == pygame.KEYDOWN:
-                print "right",jp.rect.right
-                print "left",jp.rect.left
-                print "top",jp.rect.top
-                print "bottom",jp.rect.bottom,'\n'
+                # print "right",jp.rect.right
+                # print "left",jp.rect.left
+                # print "top",jp.rect.top
+                # print "bottom",jp.rect.bottom,'\n'
                 if event.key == pygame.K_RIGHT:
                     jp.dir = 1
                     jp.orientacion = 1
@@ -1002,6 +1026,7 @@ if __name__ == '__main__':
                     jp.dir = 4
                     jp.orientacion = 4
                 if event.key == pygame.K_SPACE:
+
                     if jp.orientacion == 1:
                         bala = Bala_Jugador('bala_right.png', [jp.rect.x, jp.rect.y])
                         bala.dir = 1
@@ -1026,10 +1051,14 @@ if __name__ == '__main__':
         # Analiza todas las colisiones del juego GENERAL
         analizar_Colisiones()
 
-        if jp.vidas == 0:
+        if jp.vidas <= 0:
+            level_three.stop()
+            gameover.play()
             victoria = False
             seguir = False
         if jp.enemies == 0 and (jp.rect.left == jefe.rect.left and jp.rect.top == jefe.rect.top) or (jp.rect.left == 961 and jp.rect.top == 6):
+            level_three.stop()
+            avance_nivel.play()
             victoria = True
             seguir = False
             print "victoria"
