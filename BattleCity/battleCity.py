@@ -246,7 +246,7 @@ class Jugador(pygame.sprite.Sprite):
         self.var_y = 31
         self.muros = []
         self.vidas = 3
-        self.enemies = 12
+        self.enemies = 0
         self.victoria = 0
 
     def nueva_img(self, archivo):
@@ -309,8 +309,8 @@ class Bala_Enemigos(pygame.sprite.Sprite):
         self.rect.x = pos[0]
         self.rect.y = pos[1]
         self.dir = dire
-        self.var_x = 1
-        self.var_y = 1
+        self.var_x = 2
+        self.var_y = 2
 
     def nueva_img(self, archivo):
         self.image = pygame.image.load(archivo).convert_alpha()
@@ -445,8 +445,8 @@ class Bala_Jugador(pygame.sprite.Sprite):
         self.rect.x = pos[0]
         self.rect.y = pos[1]
         self.dir = 0
-        self.var_y = 2
-        self.var_x = 2
+        self.var_y = 3
+        self.var_x = 3
 
     def nueva_img(self, archivo):
         self.image = pygame.image.load(archivo).convert_alpha()
@@ -550,7 +550,7 @@ def analizar_Colisiones():
         print "disparo jugador"
         perder_vida.play()
         jp.vidas = jp.vidas - 1
-        # info.vidas = info.vidas - 1
+        info.vidas = info.vidas - 1
 
     # Se analiza colision bala jugador con el tanque enemigo estatico
     for bala in bala_jp:
@@ -560,7 +560,7 @@ def analizar_Colisiones():
             bala_jp.remove(bala)
             jp.enemies = jp.enemies - 1
             todos.remove(bala)
-            # info.enemigos = info.enemigos - 1
+            info.enemigos = info.enemigos - 1
 
     # Se analiza colision bala jugador con el tanque enemigo dinamico
     for bala in bala_jp:
@@ -569,6 +569,7 @@ def analizar_Colisiones():
             disparo_tanqueEnemigo.play()
             bala_jp.remove(bala)
             jp.enemies = jp.enemies - 1
+            info.enemigos = info.enemigos - 1
             todos.remove(bala)
 
 def Leer_Mapa(nombre_mapa):
@@ -634,33 +635,31 @@ class Barra_info(pygame.sprite.Sprite):
         self.nivel = 0
 
     def Perder_vidas(self):
-        v=str(self.vidas)
-        fuente=pygame.font.Font(None,25)
-        texto=fuente.render("Vidas:",True,BLANCO)
+        v = str(self.vidas)
+        fuente=pygame.font.SysFont("Arial", 20)
+        texto=fuente.render("Vidas:", True, (200,200,200), (0,0,0) )
         vida=fuente.render(v,True,BLANCO)
         pantalla.blit(texto,[1100,50])
         pantalla.blit(vida,[1250,50])
         pygame.display.flip()
-
     def Matar_enemigos(self):
         M=str(self.enemigos)
-        fuente=pygame.font.Font(None,25)
-        texto=fuente.render("Enemigos:",True,BLANCO)
+        fuente=pygame.font.SysFont("Arial", 20)
+        texto=fuente.render("Enemigos:", True, (200,200,200), (0,0,0) )
         enemigos=fuente.render(M,True,BLANCO)
         pantalla.blit(texto,[1100,70])
         pantalla.blit(enemigos,[1250,70])
         pygame.display.flip()
-
     def Nivel_actual(self):
         N=str(self.nivel)
-        fuente=pygame.font.Font(None,25)
-        texto=fuente.render("Nivel Actual:",True,BLANCO)
+        fuente=pygame.font.SysFont("Arial", 20)
+        texto=fuente.render("Nivel Actual:", True, (200,200,200), (0,0,0) )
         nivel=fuente.render(N,True,BLANCO)
         pantalla.blit(texto,[1100,90])
         pantalla.blit(nivel,[1250,90])
         pygame.display.flip()
 
-# info = Barra_info()
+info = Barra_info()
 
 if __name__ == '__main__':
     # Inicializar pygame
@@ -668,10 +667,6 @@ if __name__ == '__main__':
     # Inicializar pantalla
     pantalla = pygame.display.set_mode([ANCHO, ALTO])
     fuente = pygame.font.Font(None, 40)
-
-    # info.enemigos = 12
-    # info.vidas = 3
-    # info.nivel = 1
 
     disparo_tanqueEnemigo = pygame.mixer.Sound("mato-enemigo.ogg")
     avance_nivel = pygame.mixer.Sound("ganar-primer-nivel.ogg")
@@ -726,6 +721,7 @@ if __name__ == '__main__':
     # JUGADOR PRIMER NIVEL
     jp = Jugador('tanquedown.png')
     jp.muros = muros_obstaculo
+    jp.enemies = 11
     todos.add(jp)
 
     jefe = Muro('jefe.png', [961, 31])
@@ -734,12 +730,16 @@ if __name__ == '__main__':
     # creacion enemigo dinamico (archivo, posxy, dir, top, bottom, left, right)
     create_EnemyDinamic()
 
+    info.enemigos = jp.enemies
+    info.vidas = jp.vidas
+    info.nivel = 1
+
     # DINAMICA NIVEL 1
     level_one.play()
     while seguir and not fin:
-        # info.Perder_vidas()
-        # info.Matar_enemigos()
-        # info.Nivel_actual()
+        info.Perder_vidas()
+        info.Matar_enemigos()
+        info.Nivel_actual()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 fin = True
@@ -856,7 +856,13 @@ if __name__ == '__main__':
 
     jp = Jugador('tanquedown.png')
     jp.muros = muros_obstaculo
+    jp.enemies = 12
     todos.add(jp)
+
+    info = Barra_info()
+    info.enemigos = jp.enemies
+    info.vidas = jp.vidas
+    info.nivel = 2
 
     # creacion enemigo dinamico (archivo, posxy, dir, top, bottom, left, right)
     create_EnemyDinamic()
@@ -864,6 +870,9 @@ if __name__ == '__main__':
     level_two.play()
     # DINAMICA NIVEL 2
     while not fin and seguir:
+        info.Perder_vidas()
+        info.Matar_enemigos()
+        info.Nivel_actual()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 fin = True
@@ -910,6 +919,11 @@ if __name__ == '__main__':
 
         # Analiza todas las colisiones del juego GENERAL
         analizar_Colisiones()
+
+        info.Perder_vidas()
+        info.Matar_enemigos()
+        info.Nivel_actual()
+        pygame.display.flip()
 
         if jp.vidas <= 0:
             level_two.stop()
@@ -981,25 +995,26 @@ if __name__ == '__main__':
 
     jp = Jugador('tanquedown.png')
     jp.muros = muros_obstaculo
+    jp.enemies = 16
     todos.add(jp)
 
     jefe = Muro('jefe.png', [961, 0])
     todos.add(jefe)
-    jp.enemies = 16
+
+    info = Barra_info()
+    info.enemigos = jp.enemies
+    info.vidas = jp.vidas
+    info.nivel = 3
 
     # creacion enemigo dinamico (archivo, posxy, dir, top, bottom, left, right)
     create_EnemyDinamicThree()
 
     level_three.play()
     # DINAMICA NIVEL 3
-    '''
-    dinamicos
-    left 6 - right 155
-    bottom 428 - top 279
-    left 620 - right 893
-    left 620 - right 924
-    '''
     while not fin and seguir:
+        info.Perder_vidas()
+        info.Matar_enemigos()
+        info.Nivel_actual()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 fin = True
