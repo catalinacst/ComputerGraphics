@@ -445,8 +445,8 @@ class Bala_Jugador(pygame.sprite.Sprite):
         self.rect.x = pos[0]
         self.rect.y = pos[1]
         self.dir = 0
-        self.var_y = 3
-        self.var_x = 3
+        self.var_y = 4
+        self.var_x = 4
 
     def nueva_img(self, archivo):
         self.image = pygame.image.load(archivo).convert_alpha()
