@@ -81,6 +81,11 @@ class EnemyStatic(pygame.sprite.Sprite):
                 bala_enemy.add(bala)
                 todos.add(bala)
                 self.temp = random.randint(100,200)
+            if self.dir == 3:
+                bala = Bala_Enemigos('bala_enemy01.png', [self.rect.x, self.rect.y], self.dir)
+                bala_enemy.add(bala)
+                todos.add(bala)
+                self.temp = random.randint(50,100)
 
 class Muro(pygame.sprite.Sprite):
     def __init__(self, archivo_img, pos):
@@ -183,6 +188,14 @@ def analizar_Colisiones():
             bala_jp.remove(bala)
             todos.remove(bala)
 
+    # Se analiza colision de las balas del jugador
+    # con los diferentes muros (destruye ladrillos) (no destruye acero)
+    for bala in bala_jp:
+        col_ladrillos = pygame.sprite.spritecollide(bala, bloques, False)
+        for e in col_ladrillos:
+            bala_jp.remove(bala)
+            todos.remove(bala)
+
 if __name__ == '__main__':
     pygame.init()
     pantalla = pygame.display.set_mode((ANCHO, ALTO))
@@ -216,15 +229,40 @@ if __name__ == '__main__':
     bloques.add(muro5)
     todos.add(muro5)
 
-    static1 = EnemyStatic('seniortopo.png', [1545,359], 2)
-    enemies_static.add(static1)
-    todos.add(static1)
+    topo1 = EnemyStatic('seniortopo.png', [1545,359], 2)
+    enemies_static.add(topo1)
+    todos.add(topo1)
 
-    static2 = EnemyStatic('seniortopo.png', [1700,459], 2)
-    enemies_static.add(static2)
-    todos.add(static2)
+    muro6 = Muro("ladrillo.png", [1700,400])
+    bloques.add(muro6)
+    todos.add(muro6)
+
+    muro7 = Muro("ladrillo.png", [1745,400])
+    bloques.add(muro7)
+    todos.add(muro7)
+
+    muro8 = Muro("ladrillo.png", [1790,400])
+    bloques.add(muro8)
+    todos.add(muro8)
+
+    muro9 = Muro("ladrillo.png", [1790,445])
+    bloques.add(muro9)
+    todos.add(muro9)
+
+    topo2 = EnemyStatic('seniortopo.png', [1700,459], 2)
+    enemies_static.add(topo2)
+    todos.add(topo2)
+
+    volcano1 = EnemyStatic('volcano.png', [1900,459], 3)
+    enemies_static.add(volcano1)
+    todos.add(volcano1)
+
+    volcano2 = EnemyStatic('volcano.png', [1975,459], 3)
+    enemies_static.add(volcano2)
+    todos.add(volcano2)
 
     # seniortopo.png
+    # volcano.png
 
     jp.bloques = bloques
 
@@ -262,12 +300,19 @@ if __name__ == '__main__':
                         todos.add(bala)
 
         muro.rect.x = muro.rect.x - 2
-        muro2.rect.x = muro2.rect.x - 2
-        muro3.rect.x = muro3.rect.x - 2
-        muro4.rect.x = muro4.rect.x - 2
-        muro5.rect.x = muro5.rect.x - 2
-        static1.rect.x = static1.rect.x - 2
-        static2.rect.x = static2.rect.x - 2
+        muro2.rect.x -= 2
+        muro3.rect.x -= 2
+        muro4.rect.x -= 2
+        muro5.rect.x -= 2
+        muro6.rect.x -= 2
+        muro7.rect.x -= 2
+        muro8.rect.x -= 2
+        muro9.rect.x -= 2
+        topo1.rect.x -= 2
+        topo2.rect.x -= 2
+        volcano1.rect.x -= 2
+        volcano2.rect.x -= 2
+
 
         if posx == -500:
             # cargar imagen
