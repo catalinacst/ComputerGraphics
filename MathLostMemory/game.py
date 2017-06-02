@@ -230,6 +230,7 @@ if __name__ == '__main__':
     todos.add(muro5)
 
     topo1 = EnemyStatic('seniortopo.png', [1545,359], 2)
+    bloques.add(topo1)
     enemies_static.add(topo1)
     todos.add(topo1)
 
@@ -251,15 +252,105 @@ if __name__ == '__main__':
 
     topo2 = EnemyStatic('seniortopo.png', [1700,459], 2)
     enemies_static.add(topo2)
+    bloques.add(topo2)
     todos.add(topo2)
 
     volcano1 = EnemyStatic('volcano.png', [1900,459], 3)
     enemies_static.add(volcano1)
+    bloques.add(volcano1)
     todos.add(volcano1)
 
     volcano2 = EnemyStatic('volcano.png', [1975,459], 3)
     enemies_static.add(volcano2)
+    bloques.add(volcano2)
     todos.add(volcano2)
+
+    muro10 = Muro("ladrillo.png", [2100,445])
+    bloques.add(muro10)
+    todos.add(muro10)
+
+    muro11 = Muro("ladrillo.png", [2175,445])
+    bloques.add(muro11)
+    todos.add(muro11)
+
+    muro12 = Muro("ladrillo.png", [2245,445])
+    bloques.add(muro12)
+    todos.add(muro12)
+
+    muro13 = Muro("ladrillo.png", [2400,400])
+    bloques.add(muro13)
+    todos.add(muro13)
+
+    muro14 = Muro("ladrillo.png", [2475,400])
+    bloques.add(muro14)
+    todos.add(muro14)
+
+    topo3 = EnemyStatic('seniortopo.png', [2475,359], 2)
+    bloques.add(topo3)
+    enemies_static.add(topo3)
+    todos.add(topo3)
+
+    muro15 = Muro("ladrillo.png", [2600,400])
+    bloques.add(muro15)
+    todos.add(muro15)
+
+    volcano3 = EnemyStatic('volcano.png', [2600,357], 3)
+    enemies_static.add(volcano3)
+    bloques.add(volcano3)
+    todos.add(volcano3)
+
+    topo4 = EnemyStatic('seniortopo.png', [2600,459], 2)
+    bloques.add(topo4)
+    enemies_static.add(topo4)
+    todos.add(topo4)
+
+    topo5 = EnemyStatic('seniortopo.png', [2800,459], 2)
+    bloques.add(topo5)
+    enemies_static.add(topo5)
+    todos.add(topo5)
+
+    volcano4 = EnemyStatic('volcano.png', [2900,457], 3)
+    enemies_static.add(volcano4)
+    bloques.add(volcano4)
+    todos.add(volcano4)
+
+    muro16 = Muro("ladrillo.png", [3000,400])
+    bloques.add(muro16)
+    todos.add(muro16)
+
+    muro17 = Muro("ladrillo.png", [3045,400])
+    bloques.add(muro17)
+    todos.add(muro17)
+
+    muro18 = Muro("ladrillo.png", [3090,400])
+    bloques.add(muro18)
+    todos.add(muro18)
+
+    muro19 = Muro("ladrillo.png", [3135,400])
+    bloques.add(muro19)
+    todos.add(muro19)
+
+    muro20 = Muro("ladrillo.png", [3180,400])
+    bloques.add(muro20)
+    todos.add(muro20)
+
+    muro21 = Muro("ladrillo.png", [3225,400])
+    bloques.add(muro21)
+    todos.add(muro21)
+
+    muro22 = Muro("ladrillo.png", [3225,445])
+    bloques.add(muro22)
+    todos.add(muro22)
+
+    topo6 = EnemyStatic('seniortopo.png', [3225,359], 2)
+    bloques.add(topo6)
+    enemies_static.add(topo6)
+    todos.add(topo6)
+
+    volcano5 = EnemyStatic('volcano.png', [3270,457], 3)
+    enemies_static.add(volcano5)
+    bloques.add(volcano5)
+    todos.add(volcano5)
 
     # seniortopo.png
     # volcano.png
@@ -308,26 +399,53 @@ if __name__ == '__main__':
         muro7.rect.x -= 2
         muro8.rect.x -= 2
         muro9.rect.x -= 2
+        muro10.rect.x -= 2
+        muro11.rect.x -= 2
+        muro12.rect.x -= 2
+        muro13.rect.x -= 2
+        muro14.rect.x -= 2
+        muro15.rect.x -= 2
+        muro16.rect.x -= 2
+        muro17.rect.x -= 2
+        muro18.rect.x -= 2
+        muro19.rect.x -= 2
+        muro20.rect.x -= 2
+        muro21.rect.x -= 2
+        muro22.rect.x -= 2
+
         topo1.rect.x -= 2
         topo2.rect.x -= 2
+        topo3.rect.x -= 2
+        topo4.rect.x -= 2
+        topo5.rect.x -= 2
+        topo6.rect.x -= 2
+
         volcano1.rect.x -= 2
         volcano2.rect.x -= 2
+        volcano3.rect.x -= 2
+        volcano4.rect.x -= 2
+        volcano5.rect.x -= 2
 
+        jp.bloques = bloques
 
-        if posx == -500:
-            # cargar imagen
-            fondo = pygame.image.load("fondo01.png")
-            posx = 0
-            posy = -300
-            mov_x = 2
-            pantalla_tam = pantalla_tam + 1
+        if pantalla_tam < 5:
+            if posx == -500:
+                # cargar imagen
+                fondo = pygame.image.load("fondo01.png")
+                posx = 0
+                posy = -300
+                mov_x = 2
+                pantalla_tam = pantalla_tam + 1
 
-        # Analiza todas las colisiones del juego GENERAL
-        analizar_Colisiones()
+            # Analiza todas las colisiones del juego GENERAL
+            analizar_Colisiones()
 
-        posx = posx - mov_x
-        pantalla.fill(NEGRO)
-        pantalla.blit(fondo,(posx,posy))
-        todos.update()
-        todos.draw(pantalla)
-        pygame.display.flip()
+            posx = posx - mov_x
+            pantalla.fill(NEGRO)
+            pantalla.blit(fondo,(posx,posy))
+            todos.update()
+            todos.draw(pantalla)
+            pygame.display.flip()
+        else:
+            pantalla.fill(NEGRO)
+            pygame.display.flip()            
