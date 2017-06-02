@@ -77,7 +77,7 @@ class EnemyStatic(pygame.sprite.Sprite):
         self.temp = self.temp - 1
         if self.temp == 0:
             if self.dir == 2:
-                bala = Bala_Enemigos('bala_enemy01.png', [self.rect.x, self.rect.y + 15], self.dir)
+                bala = Bala_Enemigos('bala_enemy01.png', [self.rect.x, self.rect.y + 10], self.dir)
                 bala_enemy.add(bala)
                 todos.add(bala)
                 self.temp = random.randint(100,200)
@@ -216,9 +216,13 @@ if __name__ == '__main__':
     bloques.add(muro5)
     todos.add(muro5)
 
-    static = EnemyStatic('seniortopo.png', [1545,359], 2)
-    enemies_static.add(static)
-    todos.add(static)
+    static1 = EnemyStatic('seniortopo.png', [1545,359], 2)
+    enemies_static.add(static1)
+    todos.add(static1)
+
+    static2 = EnemyStatic('seniortopo.png', [1700,459], 2)
+    enemies_static.add(static2)
+    todos.add(static2)
 
     # seniortopo.png
 
@@ -262,7 +266,8 @@ if __name__ == '__main__':
         muro3.rect.x = muro3.rect.x - 2
         muro4.rect.x = muro4.rect.x - 2
         muro5.rect.x = muro5.rect.x - 2
-        static.rect.x = static.rect.x - 2
+        static1.rect.x = static1.rect.x - 2
+        static2.rect.x = static2.rect.x - 2
 
         if posx == -500:
             # cargar imagen
@@ -271,7 +276,7 @@ if __name__ == '__main__':
             posy = -300
             mov_x = 2
             pantalla_tam = pantalla_tam + 1
-            
+
         # Analiza todas las colisiones del juego GENERAL
         analizar_Colisiones()
 
