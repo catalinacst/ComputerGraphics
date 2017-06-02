@@ -12,6 +12,7 @@ todos = pygame.sprite.Group()
 bloques = pygame.sprite.Group()
 enemies_static = pygame.sprite.Group()
 bala_jp = pygame.sprite.Group()
+bala_enemy = pygame.sprite.Group()
 
 class Bala_Jugador(pygame.sprite.Sprite):
     def __init__(self,archivo_img,pos):
@@ -76,7 +77,8 @@ class EnemyStatic(pygame.sprite.Sprite):
         self.temp = self.temp - 1
         if self.temp == 0:
             if self.dir == 2:
-                bala = Bala_Enemigos('bala_enemy01.png', [self.rect.x, self.rect.y], self.dir)
+                bala = Bala_Enemigos('bala_enemy01.png', [self.rect.x, self.rect.y + 15], self.dir)
+                bala_enemy.add(bala)
                 todos.add(bala)
                 self.temp = random.randint(100,200)
 
@@ -102,6 +104,7 @@ class Jugador(pygame.sprite.Sprite):
         self.orientacion = 0
         self.balaright = 0
         self.balaleft = 0
+        self.vidas = 3
 
     def nueva_img(self, archivo):
         self.image = pygame.image.load(archivo).convert_alpha()
@@ -158,6 +161,27 @@ class Jugador(pygame.sprite.Sprite):
 
             self.vary = 0
             self.varx = 4
+
+def analizar_Colisiones():
+    # Se analiza colision de bala de enemigo y bala del jugador, para que se autodestruyan entre si
+    for bala in bala_enemy:
+        col_balas = pygame.sprite.spritecollide(bala, bala_jp, True)
+        for e in col_balas:
+            bala_enemy.remove(bala)
+            todos.remove(bala)
+
+    # Se analiza colision bala enemigo con el tanque jugador
+    balaEnemy_jp = pygame.sprite.spritecollide(jp, bala_enemy, True)
+    for e in balaEnemy_jp:
+        print "disparo jugador"
+        jp.vidas = jp.vidas - 1
+
+    # Se analiza colision bala jugador con el tanque enemigo estatico
+    for bala in bala_jp:
+        balaJp_enemy = pygame.sprite.spritecollide(bala, enemies_static, True)
+        for e in balaJp_enemy:
+            bala_jp.remove(bala)
+            todos.remove(bala)
 
 if __name__ == '__main__':
     pygame.init()
@@ -247,6 +271,9 @@ if __name__ == '__main__':
             posy = -300
             mov_x = 2
             pantalla_tam = pantalla_tam + 1
+            
+        # Analiza todas las colisiones del juego GENERAL
+        analizar_Colisiones()
 
         posx = posx - mov_x
         pantalla.fill(NEGRO)
