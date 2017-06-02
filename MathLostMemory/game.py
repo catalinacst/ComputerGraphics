@@ -1,4 +1,5 @@
 import pygame
+import random
 #Mostrar texto en pantalla
 ALTO = 500
 ANCHO = 1200
@@ -6,6 +7,11 @@ ANCHO = 1200
 BLANCO = (255,255,255)
 VERDE = (0,255,0)
 NEGRO = (0,0,0)
+
+todos = pygame.sprite.Group()
+bloques = pygame.sprite.Group()
+enemies_static = pygame.sprite.Group()
+bala_jp = pygame.sprite.Group()
 
 class Bala_Jugador(pygame.sprite.Sprite):
     def __init__(self,archivo_img,pos):
@@ -37,8 +43,8 @@ class Bala_Enemigos(pygame.sprite.Sprite):
         self.rect.x = pos[0]
         self.rect.y = pos[1]
         self.dir = dire
-        self.var_x = 2
-        self.var_y = 2
+        self.var_x = 7
+        self.var_y = 7
 
     def nueva_img(self, archivo):
         self.image = pygame.image.load(archivo).convert_alpha()
@@ -46,18 +52,15 @@ class Bala_Enemigos(pygame.sprite.Sprite):
     def update(self):
         desplx = self.rect.x
         desply = self.rect.y
-        if self.dir == 1:
-            self.rect.x = self.rect.x + self.var_x
-            self.nueva_img('bala_right.png')
-        elif self.dir == 2:
+        if self.dir == 2:
             self.rect.x = self.rect.x - self.var_x
-            self.nueva_img('bala_left.png')
+            self.nueva_img('bala_enemy01.png')
         elif self.dir == 3:
             self.rect.y = self.rect.y - self.var_y
-            self.nueva_img('bala_up.png')
+            self.nueva_img('bala_enemy01.png')
         elif self.dir == 4:
             self.rect.y = self.rect.y + self.var_y
-            self.nueva_img('bala_down.png')
+            self.nueva_img('bala_enemy01.png')
 
 class EnemyStatic(pygame.sprite.Sprite):
     def __init__(self, archivo_img, pos, dire):
@@ -67,16 +70,15 @@ class EnemyStatic(pygame.sprite.Sprite):
         self.rect.x = pos[0]
         self.rect.y = pos[1]
         self.dir = dire
-        self.temp = random.randint(200,500)
+        self.temp = random.randint(100,200)
 
     def update(self):
         self.temp = self.temp - 1
         if self.temp == 0:
-            elif self.dir == 2:
+            if self.dir == 2:
                 bala = Bala_Enemigos('bala_enemy01.png', [self.rect.x, self.rect.y], self.dir)
-                bala_enemy.add(bala)
                 todos.add(bala)
-                self.temp = random.randint(200,500)
+                self.temp = random.randint(100,200)
 
 class Muro(pygame.sprite.Sprite):
     def __init__(self, archivo_img, pos):
@@ -160,10 +162,6 @@ class Jugador(pygame.sprite.Sprite):
 if __name__ == '__main__':
     pygame.init()
     pantalla = pygame.display.set_mode((ANCHO, ALTO))
-    todos = pygame.sprite.Group()
-    bloques = pygame.sprite.Group()
-    enemies_static = pygame.sprite.Group()
-    bala_jp = pygame.sprite.Group()
 
     # cargar imagen
     fondo = pygame.image.load("fondo01.png")
@@ -177,11 +175,6 @@ if __name__ == '__main__':
     muro = Muro("ladrillo.png", [200,400])
     bloques.add(muro)
     todos.add(muro)
-
-    static = EnemyStatic('enemystatic_right.png', [x,y], 1)
-    enemies_static.add(static)
-    muros_obstaculo.add(static)
-    todos.add(static)
 
     muro2 = Muro("ladrillo.png", [300,400])
     bloques.add(muro2)
@@ -198,6 +191,10 @@ if __name__ == '__main__':
     muro5 = Muro("ladrillo.png", [1545,400])
     bloques.add(muro5)
     todos.add(muro5)
+
+    static = EnemyStatic('seniortopo.png', [1545,359], 2)
+    enemies_static.add(static)
+    todos.add(static)
 
     # seniortopo.png
 
@@ -241,6 +238,7 @@ if __name__ == '__main__':
         muro3.rect.x = muro3.rect.x - 2
         muro4.rect.x = muro4.rect.x - 2
         muro5.rect.x = muro5.rect.x - 2
+        static.rect.x = static.rect.x - 2
 
         if posx == -500:
             # cargar imagen
